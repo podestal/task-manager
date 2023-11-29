@@ -11,9 +11,12 @@ def sampleView(request):
     return Response('ok')
 
 class ProjectViewSet(ModelViewSet):
-    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        print(self.request.user)
+        return Project.objects.filter(user=self.request.user)
 
 class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()

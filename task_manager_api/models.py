@@ -18,7 +18,7 @@ class Project(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=PROJECT_STATUS, default=PROJECT_STATUS_NOT_STARTED)
 
     def __str__(self):
