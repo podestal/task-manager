@@ -9,7 +9,7 @@ class Project(models.Model):
 
     PROJECT_STATUS = [
         (PROJECT_STATUS_NOT_STARTED, 'not started'),
-        (PROJECT_STATUS_NOT_STARTED, 'in progress'),
+        (PROJECT_STATUS_IN_PROGRESS, 'in progress'),
         (PROJECT_STATUS_COMPLETED, 'completed')
     ]
 
@@ -20,6 +20,9 @@ class Project(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=PROJECT_STATUS, default=PROJECT_STATUS_NOT_STARTED)
+
+    def __str__(self):
+        return self.title
 
 class Task(models.Model):
 
@@ -39,5 +42,8 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=TASK_STATUS, default=TASK_STATUS_NOT_STARTED)
+
+    def __str__(self):
+        return self.title
 
 
