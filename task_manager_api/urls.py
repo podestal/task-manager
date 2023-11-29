@@ -4,6 +4,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('projects', views.ProjectViewSet, basename='projects')
-router.register('tasks', views.TaskViewSet)
 
-urlpatterns = router.urls
+tasks_router = routers.NestedDefaultRouter(router, 'projects', lookup='project')
+tasks_router.register('tasks', views.TaskViewSet, basename='tasks')
+
+urlpatterns = router.urls + tasks_router.urls

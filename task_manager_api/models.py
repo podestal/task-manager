@@ -39,7 +39,7 @@ class Task(models.Model):
     ]
 
     title = models.CharField(max_length=255)
-    project = models.ForeignKey(Project, on_delete=models.PROTECT)
+    project = models.ForeignKey(Project, on_delete=models.PROTECT, related_name='tasks')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=TASK_STATUS, default=TASK_STATUS_NOT_STARTED)
 
