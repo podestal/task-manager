@@ -1,22 +1,23 @@
-from django.shortcuts import render
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from task_manager_api.models import Project, Task
-from task_manager_api.serializers import ProjectSerializer, TaskSerializer
-
-@api_view()
-def sampleView(request):
-    return Response('ok')
+from task_manager_api.serializers import ProjectSerializer, TaskSerializer, CreateProjectSeralizer
 
 class ProjectViewSet(ModelViewSet):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        print(self.request.user)
         return Project.objects.filter(user=self.request.user)
+    
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreateProjectSeralizer
+        return ProjectSerializer
+    
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
+        
 
 class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()
