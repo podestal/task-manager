@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'task_manager_api',
+    'notes',
     'core',
 ]
 
