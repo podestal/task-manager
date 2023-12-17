@@ -13,6 +13,19 @@
             "username": "root",
             "database": "taskmanager",
             "askForPassword": true
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "awsdj.cnmy06y44h6n.us-east-1.rds.amazonaws.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "aws rds",
+            "database": "taskmanager",
+            "username": "admin"
         }
     ]
 }

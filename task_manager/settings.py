@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'taskmanager',
-        'HOST': 'localhost',
-        'USER': 'root',
+        'HOST': 'awsdj.cnmy06y44h6n.us-east-1.rds.amazonaws.com',
+        'USER': 'admin',
         'PASSWORD': '13angulo'
     }
 }

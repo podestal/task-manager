@@ -5,10 +5,11 @@ from task_manager_api.serializers import ProjectSerializer, TaskSerializer, Crea
 
 class ProjectViewSet(ModelViewSet):
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    queryset = Project.objects.all()
+    # permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return Project.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #     return Project.objects.filter(user=self.request.user)
     
     def get_serializer_class(self):
         if self.request.method == 'POST':
